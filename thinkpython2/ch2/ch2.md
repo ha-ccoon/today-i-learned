@@ -117,4 +117,11 @@ v = 5 # velocity in meters/second.
 
 - Syntax Error
   - Syntax refers to the structure of a program and the rules about that structure.
-  -
+  - If there is a syntax error anywhere in your program, Python displays an error message and quits, and you will not be able to run the program.
+- Runtime Error
+  - This errors does not appear until after the program has started running.
+  - It also called **exceptions** because they usually indicate that something exceptional has happened.
+- Semantic Error
+  - This errors will run without generating error messages, but **it will do what you told it to do**.
+  - Identifying semantic errors can be tricky because it requires you to work backward by looking at the output of the program and trying to figure out what it is doing.
+-
