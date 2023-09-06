@@ -105,7 +105,8 @@ When you read a sentence in English or a statement in a formal language, you hav
 
 Although, formal and natural languages have many features in common - tokens, structrue, and syntax - there are many differences.
 
-- ambiguity
+ambiguity
+
 - redundancy
 - literalness
 
