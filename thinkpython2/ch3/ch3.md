@@ -139,7 +139,7 @@ repeat_lyrics()
 
 ### 3.7 Parameters and arguments
 
-Some of the functions we ahve seen require arguments, even takes two and more. 
+Some of the functions we ahve seen require arguments, even takes two and more.
 
 Inside the function, the arguments are assigned to variables called **parameters**. Here is a definition for a function that takes an argument:
 
@@ -154,10 +154,104 @@ The argument is evaluated befor ehte function is called, so in the examples the 
 
 ### 3.8 Variables and prarmetes are local
 
-When you create a variable inside a function, it is **local** , which means that is only exists inside the function.
+When you create a variable inside afunction, it is **local** , which means that is only exists inside the function.![1694059188023](https://file+.vscode-resource.vscode-cdn.net/Users/minha/Documents/study/computer-science/thinkpython2/ch3/image/ch3/1694059188023.png)
 
-When `cat_twice` terminates, the variable `cat` is destroyed. If we try to print it, we get an exceptin:
+When `cat_twice` terminates, the variable `cat` is destroyed. If we try to print it, we get an exception. Prarmeters are also local:
 
-![1694059188023](image/ch3/1694059188023.png)
+![1694059206348](image/ch3/1694059206348.png)![1694089185105](image/ch3/1694089185105.png)
 
-![1694059206348](image/ch3/1694059206348.png)
+### 3.9 Stack diagrams
+
+**Stack diagrams** show the value of each variable, but they also show the function each variable belongs to.
+
+* Each function is represented by a **frame**. A frame is a box with the name of a function beside it and the parameters and variables of the function inside it.
+* Each prameters refers to the same value as its corresponding argument.
+* If an error occurs during a function call, Python prints the name of the function, the name of the function that called it, and the name of the function that called that, all the way back to `__main`.
+
+![1694089546447](image/ch3/1694089546447.png)
+
+- For exampe, if you try to access cat from within print_twice, you get a `NameError`:
+
+![1694089973558](image/ch3/1694089973558.png)
+
+This list of functions is called a **traceback**.
+
+- It tells you what program file the error occurred in, and what line, and what functions were executing at the time. It also shows the line of code that caused the error.
+- The order of the functions in the traceback is the same as the order of the frames in the stack diagram.
+- The function that is currently running is at the bottom.
+
+### 3.10 Fruitful functions and void functions
+
+- **Fruitful functions**: functions return a value, such as the math function.
+- **Void functions**: functions don't return a value, such as the function only has print statement.
+
+In interactive mode, calling a void function will still produce a return value, but this return value is not preserved when running the function in script mode.
+
+### 3.11 Why functions?
+
+Here are the reason why we divide a program into functions:
+
+- Creating a function make a group of statements to **read and debug at ease**.
+  - It allows you to debug the parts one at a time and then assemble them into a working whole.
+- Fucntions can make a program smaller by eliminating **repetitive code.**
+- Function can be **reused** anywhere you want.
+
+### 3.14 Exercises
+
+###### Exercise 3.1.
+
+Write a function named `right_justify` that takes a string named `s` as a parameter
+and prints the string with enough leading spaces so that the last letter of the string is in column 70 of the display.
+
+```
+>>> right_justify('monty')
+```
+
+![1694093514427](image/ch3/1694093514427.png)
+
+![1694093536097](image/ch3/1694093536097.png)
+
+###### Exercise 3.2.
+
+A function object is a value you can assign to a variable or pass as an argument. For example, `do_twice` is a function that takes a function object as an argument and calls it twice:
+
+```
+def do_twice(f):
+    f()
+    f()
+```
+
+Here’s an example that uses do_twice to call a function named print_spam twice.
+
+```
+def print_spam():
+    print('spam')
+```
+
+```
+do_twice(print_spam)
+```
+
+
+> 1. Type this example into a script and test it.
+
+![1694093773907](image/ch3/1694093773907.png)
+
+> 2. Modify `do_twice` so that it takes two arguments, a function object and a value, and calls the function twice, passing the value as an argument.
+
+![1694093936465](image/ch3/1694093936465.png)![1694093902884](image/ch3/1694093902884.png)
+
+> 3. Copy the definition of `print_twice` from earlier in this chapter to your script.
+
+> 4. Use the modified version of `do_twice` to call `print_twice` twice, passing 'spam' as an argument.
+
+> 5. Define a new function called do_four that takes a function object and a value and calls the function four times, passing the value as a parameter. There should be only two statements in the body of this function, not four.
+
+###### Exercise 3.3.
+
+Note: This exercise should be done using only the statements and other features we
+have learned so far.
+
+> 1. Write a function that draws a grid like the following:
+
+![1694094378622](image/ch3/1694094378622.png)
