@@ -54,8 +54,8 @@ for i inrange(4):
 
 ### 4.3 Exercises
 
-> Write a function called `square` that takes a parameter named `t`, which is a turtle. It should use the turtle to draw a square.
-> Write a function call that passes bob as an argument to square, and then run the program again.
+> 1. Write a function called `square` that takes a parameter named `t`, which is a turtle. It should use the turtle to draw a square.
+>    Write a function call that passes bob as an argument to square, and then run the program again.
 
 ```
 import turtle
@@ -69,8 +69,36 @@ def square(t):
 square(bob) 
 ```
 
-> Add another parameter, named `length`, to `square`.
-> Modify the body so length of the sides is `length`, and then modify the function call to provide a second argument. Run the program again. Test your program with a range of values for length.
+> 2. Add another parameter, named `length`, to `square`.
+>    Modify the body so length of the sides is `length`, and then modify the function call to provide a second argument. Run the program again. Test your program with a range of values for length.
+
+```
+def square(t, length):
+  for i in range(4):
+    t.fd(length)
+    t.lt(90)
+  
+square(bob, 100)
+```
+
+> 3. Make a copy of square and change the name to polygon. Add another parameter named n and modify the body so it draws an n-sided regular polygon. Hint: The exterior angles of an n-sided regular polygon are 360/n degrees.
+
+```
+def polygon(t, n, length):
+  angle = 360 / n
+  for i in range(4):
+    t.fd(length)
+    t.lt(angle)
+  
+square(bob, 7, 100)
+```
+
+> 4. Write a function called circle that takes a turtle, `t`, and radius, `r`, as parameters and
+>    that draws an approximate circle by calling `polygon` with an appropriate length and
+>    number of sides. Test your function with a range of values of `r`.
+>    Hint: figure out the circumference of the circle and make sure that `length * n = circumference.`
+
+
 
 ### 4.4 Encapsulation
 
@@ -99,3 +127,33 @@ Wrapping apiece of code up in a function is called **encapsulation**.
 - It is useful when  you re-use the code, it is more concise to call a function twice than to copy and paste the body.
 
 ### 4.5 Generalization
+
+Adding a parameter to a function is called **generalization** because it makes the function more general: now the square can be any size.
+
+```
+def square(t, length):
+  for i in range(4):
+    t.fd(length)
+    t.lt(90)
+
+square(bob, 100)
+```
+
+The next step is also a generalization.
+
+```
+def polygon(t, n, length):
+  angle = 360 / n
+  for i in range(n):
+    t.fd(length)
+    t.lt(angle)
+
+polygon(bob, 7, 70)
+```
+
+When a function has more than a few numeric arguments, it is easy to forget what they are, or what order they should be in. It's called **keyword arguments** that include the parameter names as key-words.
+
+- Keyword arguments make the program more readable.
+- It also a reminder about how arguments and parameters work: when you call a function, *the arguments are assigned to the parameters*.
+
+### 4.6 Interface design
