@@ -98,8 +98,6 @@ square(bob, 7, 100)
 >    number of sides. Test your function with a range of values of `r`.
 >    Hint: figure out the circumference of the circle and make sure that `length * n = circumference.`
 
-
-
 ### 4.4 Encapsulation
 
 The fisrt exercise asks  you to put your square-drawing code into a function definition and then call the function, apssing the parameter.
@@ -157,3 +155,86 @@ When a function has more than a few numeric arguments, it is easy to forget what
 - It also a reminder about how arguments and parameters work: when you call a function, *the arguments are assigned to the parameters*.
 
 ### 4.6 Interface design
+
+```
+import math
+def circle(t, r):
+    circumference = 2 * math.pi * r
+    n = 50
+    length = circumference / n
+
+polygon(t, n, length)
+```
+
+- The first line computes the circumference of a circle.
+- `n` is the number of line segements in out approximation of a circle, so `length `is the length of each segment. Thus, polygon draws approximates a circle with radius `r`.
+- One limitation of this solution is that n is a constant.
+  - A solution would be to generalize the function by taking n as a parameter.
+- The **interface** of a function is a summary of how it is used:
+  - what are the parameters? what does the function do? and what is the return value?
+  - An interface is clean if it allows the caller to do what they want without dealing with unnecessary details.
+
+```
+def circle(t, r):
+    circumference = 2 * math.pi * r
+    n = int(circumference / 3) + 3
+    length = circumference / n
+
+polygon(t, n, length)
+```
+
+### 4.7 Refactoring
+
+When I define circle, I was able to re-use `polygon` because a many-saided polygon is a good approximation of a circle. But `arc` is not as cooperative;
+
+One alternative is to start with a conpy of polygon and transform it into `arc`. 
+
+- **Refactoring**: the process that rearranging a program to improve interfaces and facilitate code re-use.
+  - In this case, we notices that there was similar code in `arc` and `polygon`, so we factored it out into `polyline`.
+
+### 4.8 A deveopment plan
+
+A development plan is a process for writing programs.
+
+The process we used in this case study is '**encapsulation and generalization':**
+
+1. Start by writing a samll program with no function definitions.
+2. Once you get the program working, identify a coherent piece of it, encapsulate the piece in a function and give it a name.
+3. Generalize the function by adding appropriate prameteres.
+4. Repeat steps 1-3 until you have a set of working functions. Copy and paste working code to avoide repitation.
+5. Look for apportunities to improve the program by refactoring.
+
+### 4.9 docstring
+
+A **docstring** is a string at the beginning of a function that explains the interface.
+
+```
+def polyline(t, n, length, angle):
+"""Draws n line segments with the given length and
+angle (in degrees) between them. t is a turtle.
+"""
+
+for i in range(n):
+    t.fd(length)
+    t.lt(angle)
+```
+
+By convention, all doctrings are triple-quoted strings, also known as multiline strings because the triple quotes allow the string to span more than one line.
+
+### 4.10 Debugging
+
+An intercace is like a contract between function and a caller. The caller agrees to provide certain parameters and the function agrees to do certain work.
+
+For example, polyline requires four arguments: t has to be a Turtle; n has to be an integer; length should be a positive number; and angle has to be a number, which is understood to be in degrees.
+
+- These requirements are called **preconditions** beacuse they are supposed to be true before the function starts executing.
+  - Preconditions are the responsibility of the caller.
+  - If the caller violates a precondition and the function doesn't work correctly, the bug is in the caller, not the function.
+- Conversely, conditions at the end of the function are **postconditions**.
+  - Postconditions includes the intended effect of the function and any side effects.
+
+### 4.11 Glossary
+
+- encapsulation: the process of transforming a sequence of statements into a function definition.
+- generalization: the progess of replacing somehitng unnecessarliy specific with something appropriately general (like a number to variable or parameter)
+- interface: a description of how to use a function, including the name and descriptions of the argument s return value.

@@ -15,7 +15,11 @@ def polygon(t, n, length):
     t.lt(angle)
 
 def circle(t, r):
+  """circumference = 2 * math.pi * r"""
+  n = 50
+  length = circumference / n
   
+  polygon(t, r, length)
   
 
-circle(r)  
+circle(bob, 50)  
