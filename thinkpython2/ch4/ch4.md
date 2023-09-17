@@ -187,7 +187,7 @@ polygon(t, n, length)
 
 When I define circle, I was able to re-use `polygon` because a many-saided polygon is a good approximation of a circle. But `arc` is not as cooperative;
 
-One alternative is to start with a conpy of polygon and transform it into `arc`. 
+One alternative is to start with a conpy of polygon and transform it into `arc`.
 
 - **Refactoring**: the process that rearranging a program to improve interfaces and facilitate code re-use.
   - In this case, we notices that there was similar code in `arc` and `polygon`, so we factored it out into `polyline`.

@@ -1,0 +1,4 @@
+- Also, you can extract the right-most digit or digits from a number. For example, x % 10 yields the right-most digit of x (in base 10). Similarly x % 100 yields the last two digits.
+- Relational operators?
+- Compound statement? block?
+- Branch in alternatvies? else?

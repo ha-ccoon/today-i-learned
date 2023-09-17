@@ -20,11 +20,11 @@ The details look different in different languages, but a few basic instructions 
 
 The Python interpreter is a program that reads and executes Python code.The first three lines contain infomation about the interpreter and the operating system it's running on.- Python version: 3.11.2
 
-![1693735263479](image/ch1.the_way_of_the_program/1693735263479.png)
+![1693735263479](image/ch1/1693735263479.png)
 
 - The last line is a **prompt** that indicates that the interpreter is ready for you to enter code.
 
-![1693739196661](image/ch1.the_way_of_the_program/1693739196661.png)
+![1693739196661](image/ch1/1693739196661.png)
 
 ### 1.3 The first program
 
@@ -32,7 +32,7 @@ The Python interpreter is a program that reads and executes Python code.The firs
   - The quatation marks in the program amrk the beginning and end of the text to be displayed.
   - The parentheses indicate that print is a function.
 
-![1693739071493](https://file+.vscode-resource.vscode-cdn.net/Users/minha/Documents/study/computer-science/thinkpython2/image/ch1.the_way_of_the_program/1693739071493.png)
+![1693739071493](https://file+.vscode-resource.vscode-cdn.net/Users/minha/Documents/study/computer-science/thinkpython2/image/ch1/1693739071493.png)
 
 ### 1.4 Arithmetic operators
 
@@ -54,7 +54,7 @@ You might wonder why the result for line 4 is 42.0 instead of 42. It will be exp
 
 In other languages, ^ is used for exponentation, but in Python it is a bitwise operator called XOR.
 
-#### ~~Bitwise operator~~
+#### Bitwise operator
 
 In Python, bitwise operators are used to perform bitwise calculations on integers. (Only for integers)
 
@@ -70,14 +70,14 @@ The integers are first converted into binary and then operations are performed o
   - 42.0 is a floating-point number
   - 'Hello, World' is a string
 
-![1693740716113](image/ch1.the_way_of_the_program/1693740716113.png)
+![1693740716113](image/ch1/1693740716113.png)
 
 - The word `class` is used in the sense of a category; a type is a category of values
   - ss integers belong to the type `int`, strings belong to `str` and flaoting-point numbers belong to `float`
 
 If you type a large integer using commas between groups of digits, this is actually not legal in Python. Becaue Python inteprets 1,000,000 as a comma-seperated sequence of integers.
 
-![1693741005393](image/ch1.the_way_of_the_program/1693741005393.png)
+![1693741005393](image/ch1/1693741005393.png)
 
 ### 1.6 Formal and natural Languages
 
@@ -95,6 +95,7 @@ There are two flavors in syntax rules, pertaining to **tokens and structure.**
 
 - Tokens are the smallest individual unit of the language, such as words, numbers, and chemical elements.
 - One of the problems with `3+ =3$6` is that $ is not a legal token in mathmatics.
+- Foe ex
 
 2. Structure
 
