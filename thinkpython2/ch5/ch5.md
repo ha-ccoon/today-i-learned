@@ -193,3 +193,51 @@ What happens if we call this function like this? `countdown(3)`
 A function that calls itself is **recursive**; the process of executing it is called **recursion**.
 
 For simple example like this, it is probably easier to use a `for` loop. But we will see examples later that are hard to write with a for loop and wasy to write with resursion.
+
+### 5.9 Stack diagrams for recursive functions
+
+![1694951173841](https://file+.vscode-resource.vscode-cdn.net/Users/minha/Documents/study/computer-science/thinkpython2/ch5/image/ch5/1694951173841.png)
+
+Every time a function gets called, Python creates a frame to contain the function's local variables and parameters. For a recursive function, there might be more than one frame on the stack at the same time.
+
+- As usual, the top of the stack is the fram for `__main__`. It is empty becuase we did not create any variable in `__main__` or pass any arguments.
+- The four countdown frames have different values for the parameter n.
+  - The bottom of the stack, where `n=0`, is called the **base case**.
+  - It does not make a recursive call, so there are no more frames.
+
+### 5.10 Infinite recursion
+
+**Infinite recursion**: If a recursion never reaches a base case, it goes on making recursive calls forever, and the program never terminates.
+
+```
+def recurse():
+    recurse()
+
+RuntimeError: Maximum recursion depth exceeded
+```
+
+- In the most programming environments, a program with infinite recursion does not really run forever.
+  - Python will reports an error message when the maximum recursion depth is reached.
+  - When the error occurs, there are 1000 recurse frames on the stack.
+- If you encounter an infinite recursion by accident, review the below cases:
+  - Confirm that there is a base case that does not make a recursive call.
+  - If there is a base case, check whether you are guaranteed to reach it.
+
+### 5.11 Keyboard input
+
+**`input` built-in function**: stops the program and waits for the user to type something. When the user presses `Return` or `Enter`, the program resumes and input returns what the user typed as a *string*.
+
+```
+name = input('what is your name? \n')
+'Aurther, King of the Britons!'
+```
+
+- The sequence `\n` at the end of the prompt represents a **newline**, which is a special character that causes a line break.
+- You can make the return value as an *integer*.
+
+  ```
+  prompt = 'how old are you?'
+  speed = input(prompt)
+
+  int(speed)
+  ```
