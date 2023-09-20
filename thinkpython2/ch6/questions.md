@@ -1,0 +1,1 @@
+- If the flow of execution gets to the end of a function, the return value is None, which is not the value of 0.
