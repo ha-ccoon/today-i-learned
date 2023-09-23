@@ -9,7 +9,7 @@ height = radius * math.sin(radians)
 
 The functions we have written are **void**. Casually, they have **no return value**; the return value is **None**.
 
-In this chapter, we are going to write fruitful functions. 
+In this chapter, we are going to write fruitful functions.
 
 ```
 def area(radius):
@@ -146,3 +146,147 @@ The key aspects of the process are the below.
 1. Start with a working program and make small ingremental changes. At any point, if there is an error, you should have a good idea where it is.
 2. Use variables to hold intermediate values so you can display and check them.
 3. Once the program is working, you need to remove the scaffolding or consolidate mutiple statements into compound expressions, but only if it does not make the program difficult to read.
+
+### 6.3 Composition
+
+### 6.4 Boolean functions
+
+Functoins can return booleans, which is often conveninent for hiding complicated tests in side functions.
+
+```
+def is_divisible(x, y):
+    if x % y == 0:
+	return True
+    else:
+	return False
+```
+
+### 6.5 More reqursion
+
+A **recursive definition** is similar to a circular definition, in the sense that the definition contains a reference to the thing being defined.
+
+Here you looked up the definition of the factorial function, denoted with the symbol !, you might get something liek this:
+
+- This definition says that the factorial of 0 is 1, and the factorial of any other value, `n`, is n multiplied by the factorial of `n-1`.
+
+![1695453526395](image/ch6/1695453526395.png)
+
+If you can write a recursive definition of something, you can write a Pythong pogram to evaluate it.
+
+```
+def factorial(n):
+    if n == 0:
+	return 1
+```
+
+- The first step is to decide what the parametes should be. In this case, it's clear that factorial takes an integer:
+
+  ```
+  def factorial(n):
+  ```
+- If the argument happens to be 0, all we have to do is return 1:
+
+  ```
+  def factorial(n):
+      if n == 0:
+  	return 1
+  ```
+- Otherwise, we have to make a recursive call to find the factorial of `n-1` and then mutiply it by `n`:
+
+  ```
+  def factorial(n):
+      if n == 0:
+  	return 
+      else:
+  	recurse = factorial(n-1)
+  	result = n * recurse
+  	return result
+  ```
+- The stack diagram below shows how this sequence of function calls look like.
+
+  ![1695455375408](image/ch6/1695455375408.png)
+
+### 6.6 Leap of faith
+
+Following the flow of execution is one way to read programs, but it can quickly become overwhelming. An alternative is **leap of faith**.
+
+- When you come to a function call, instead of following the flow of execution, you assume that the function works correctly and returns the right result.
+- For example, when you use built-in functions, you just assume that they work because the people who wrote the buit-in functions were good programmers.
+
+### 6.7 One more example
+
+After `factorial`, the most common example of a recursively defined mathematical function is fibonacci, which has the following definition:
+
+![1695456062378](image/ch6/1695456062378.png)
+
+Translated into Python, it lookd like this:
+
+```
+def fibonacci(n):
+    if n == 0:
+	return 0
+    elif n == 1:
+	return 1
+    else:
+	return fibonacci(n-1) + fibonacci(n-2)
+```
+
+### 6.8 Checking types
+
+What happens if we call factorial and give it 1.5 as an argument? 
+
+```
+>>> factorial(1.5)
+RuntimeError: Maximum recursion depth exceeded
+```
+
+It looks like an infinite recursion. How can that be?
+
+- The function has a base case - when `n == 0`. But if `n` is not an integer, we can miss the base case and recurse forever.
+  - In the first reqursive call, the value of n is `0.5`. In the next, it is `-0.5`.
+  - From there, it gets smaller (more negative), but it will never be `0`.
+
+We have two choices.
+
+- We can try to generalize the `factorial` function to work with floating-point numbers.
+
+  - This called **gamma function**.
+- We can also make `factorial` check the type of its argument.
+
+  - We can use the build-in function `isinstance` to verify the type of the argument:
+
+    ```
+    def factorial(n):
+        if not isinstance(n, int):
+    	print('Factorial is only defined for integers.')
+            return None
+        elif n < 0:
+            print('Factorial is not defined for negative integers.')
+            return None
+        elif n == 0:
+            return 1
+        else:
+            return n * factorial(n-1)
+    ```
+  - The first base case handles nonintegers; the second handles negative integers. In both cases, the program prints an error message and returns None to `indicate` that somehitng went wrong.
+
+The program like `isinstance` demonstrates a pattern sometimes called a **guardian**.
+
+- The first two conditionals act as guardians, protecting the code that follows from values that might cause an error.
+- The guardians make it possible to prove the correctness of the code.
+
+### 6.9 Debugging
+
+Breaking a large program into smaller functions creates natural checkpoints for debugging. If a function is not working, there are three possiblities to consider:
+
+- There is something wrong with the **arguments** the function is getting; a precondition is violated.
+- There is something wrong with the **function**; a postcondition is violated.
+- There is something wrong with the return value or the way it it being used.
+
+Here are the approaches of how to make checkpoints in the flow of execution:
+
+- To rule out the firsts possiblitiey, you can add a `print` statement at the beginning of the function and display the values of the parameters or the types. Or you can write code that checks the preconditions explicitly.
+
+- If the parameters look good, add a `print` statement before each `return` statement and display the return value. Consider calling the function with values that make it easy to check the result.
+
+- If the function seems to be working, look at the function call to make sure the return values is being used correctly.
