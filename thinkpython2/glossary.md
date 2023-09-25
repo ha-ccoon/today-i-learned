@@ -17,3 +17,8 @@
 - **incremental development**: a program development plan intended to avoid debugging by adding and testing only a small amount of code at a time.
 - **scaffolding**: code that is used during program development but is not part of the final version.
 - **guardian**: a programing pattern that uses a conditional statement to check for and handle circustances that might cause an error.
+
+### ch 7. Iteration
+
+- **iteration**: repeated execution of a set of statements using either a recursive function call or a loop.
+- **algorithm**: a general process for solving a category of problems.

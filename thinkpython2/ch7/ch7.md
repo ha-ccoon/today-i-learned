@@ -127,3 +127,22 @@ In general, it is dangerous to test float equality.
 
 - Floating-point values are only approximately right: most rational numbers, like 1/3, and irrational numbers, like root 2, can't be represented exeactly with a `float`.
 - In this case, rather than checking whether x and y are exactly equal, it is safter to use the built-in function abs to compute the absolute value.
+
+### 7.6 Algorithms
+
+**Algorithem** is a mechanical process for solving a category of problems.
+
+- For example, to find the product of n and 9, you can write n - 1 as the first digit and 10 - n as the second digit.
+- This is a general solution for multiplying any single-digit number by 9.
+
+One of the characteristics of algorithms is that they do not require any intelligence to carry out. They are *mechanical processes* where each step follows from the last according to a simple set of rules.
+
+### 7.7 Debugging
+
+As you start writing bigger programs, you might find yourself spending more time on debugging. More code means more changes to make an error and more places for bugs to hide.
+
+One way to cut debugging time is **debugging by bisection.**
+
+- For example, if there are 100 lines in your program and you check them one at a time, it would take 100 steps.
+- Instead, break the problem in half. Look at the middle of the program, or near it.
+- Also, think about places in the program where there might be errors and places where it is easy to put a check.
