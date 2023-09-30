@@ -159,3 +159,48 @@ This program demonstrates another pattern of computation called a **counter**.
 
 - The variable `count` is initialized to 0 and then incremented each time an a is found.
 - When the loop exists, `count` contains the result.
+
+### 8.8 String methods
+
+Strings prodvide methods that perform a variety of useful operations. 
+
+A method is similar to a function - it takes arguments and returns a value, but the syntax is different.
+
+For example, the method `upper` takes a sting and returns a new string with all uppercase letters. It uses the method syntax `word.upper()`.
+
+- This corm of dot notation specifies the name of the method, upper, and the name of the string to apply the method to, word.
+- The empty parentheses indicate that this method takes no arguments.
+
+```
+word = 'banana'
+new_word = word.upper()
+```
+
+- A method call is called an **invocation**. In this case, we would say that we are invoking `upper` on `word`.
+
+### 8.9 The `in` operator
+
+The word in is a boolean operator that takes two strings and return `True` if **the first** appears as a substring in the second.
+
+```
+'a' in 'banana'
+True
+```
+
+### 8.10 String comparision
+
+The relational operators work on strings. They will putting words in **alphabetical** order.
+
+```
+word = 'apple'
+if word < 'banana':
+    print('Your word, ' + word + ', comes before banana.')
+elif word > 'banana':
+    print('Your word, ' + word + ', comes after banana.')
+else:
+    print('All right, bananas.')
+
+Your word, apple, comes before banana.
+```
+
+- Python does not handle uppercase and lowercase letters the same way people do. All the *uppercase* letters come before all the lowercase letters.
