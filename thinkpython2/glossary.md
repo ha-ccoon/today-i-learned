@@ -23,7 +23,7 @@
 - **iteration**: repeated execution of a set of statements using either a recursive function call or a loop.
 - **algorithm**: a general process for solving a category of problems.
 
-### ch8. Strings
+### ch 8. Strings
 
 - **sequence**: an ordered collection of values where each value is identified by an integer index.
 - **item**: one of the values in a sequence.
@@ -34,3 +34,7 @@
 - **search**: a pattern of traversal that stops when it finds what it is looking for.
 - **counter**: a variable used to count something, usually initialized to zero and then incremented.
 - **invocation**: a statement that calls a method.
+
+### ch 10. Lists
+
+- In mathematics, reduction refers to  **the rewriting of an expression into a simpler form** .
