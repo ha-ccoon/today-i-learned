@@ -37,4 +37,16 @@
 
 ### ch 10. Lists
 
-- In mathematics, reduction refers to  **the rewriting of an expression into a simpler form** .
+- **list**: a sequence of values
+- **accumulator**: a variable used in a loop to add up or accumulate a result.
+- **argumented assignment**: a statement that updats the value of a variable using an operator like `+=`.
+- **reduce**: a processing pattern that traverses a sequence and accumulates the elements into a single result.
+- **map**: a processing pattern that traverses a sequence and performs an operation on each element.
+- **filter**: a processing pattern that traverses a list and selects the elements that satisfy some criterion.
+- **object**: something a variable can refer to. an object has a type and value.
+- **equivalent**: having the same value.
+- **identical**: being the same object (which implies equivalence)
+- **reference**: the association between  a variable and its value.
+- **aliasing**: a circumstance where two or more variables refer to the same object.
+- **delimiter**: a character or string used to indicate where a string should be split.
+- **reduction**: In mathematics, reduction refers to  **the rewriting of an expression into a simpler form** .
