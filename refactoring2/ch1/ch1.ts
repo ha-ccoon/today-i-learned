@@ -1,16 +1,18 @@
-interface Invoice {
+import { amountFor } from './functions';
+
+export interface Invoice {
   customer: string;
   performances: Performance[];
 }
 
-interface Performance {
+export interface Performance {
   playID: string;
   audience: number;
 }
 
 type Type = 'tragedy' | 'comedy';
 
-interface PlayInfo {
+export interface PlayInfo {
   name: string;
   type: Type;
 }
@@ -31,29 +33,7 @@ export default function statement(invoice: Invoice, plays: Plays) {
   for (let perf of invoice.performances) {
     const play = plays[perf.playID];
 
-    let thisAmount = 0;
-
-    switch (play.type) {
-      case 'tragedy': // 비극
-        thisAmount = 40000;
-
-        if (perf.audience > 30) {
-          thisAmount += 1000 * (perf.audience - 30);
-        }
-        break;
-      case 'comedy': // 희극
-        thisAmount = 30000;
-
-        if (perf.audience > 20) {
-          thisAmount += 10000 + 500 * (perf.audience - 20);
-        }
-        thisAmount += 300 * perf.audience;
-
-        break;
-
-      default:
-        throw new Error(`알 수 없는 장르 : ${play.type}`);
-    }
+    let thisAmount = amountFor(perf, play);
 
     // 포인트를 적립한다.
     volumeCredits += Math.max(perf.audience - 30, 0);
