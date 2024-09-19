@@ -1,5 +1,3 @@
-import { amountFor } from './functions';
-
 export interface Invoice {
   customer: string;
   performances: Performance[];
@@ -20,10 +18,41 @@ export interface PlayInfo {
 interface Plays extends Record<string, PlayInfo> {}
 
 export default function statement(invoice: Invoice, plays: Plays) {
-  function playFor(perf: Performance) {
-    return plays[perf.playID];
+  // get play name
+  function playFor(aPerformance: Performance) {
+    return plays[aPerformance.playID];
   }
 
+  // get the cost of the play
+  function amountFor(aPerformance: Performance) {
+    let thisAmount = 0;
+
+    switch (playFor(aPerformance).type) {
+      case 'tragedy': // 비극
+        thisAmount = 40000;
+
+        if (aPerformance.audience > 30) {
+          thisAmount += 1000 * (aPerformance.audience - 30);
+        }
+        break;
+      case 'comedy': // 희극
+        thisAmount = 30000;
+
+        if (aPerformance.audience > 20) {
+          thisAmount += 10000 + 500 * (aPerformance.audience - 20);
+        }
+        thisAmount += 300 * aPerformance.audience;
+
+        break;
+
+      default:
+        throw new Error(`알 수 없는 장르 : ${playFor(aPerformance).type}`);
+    }
+
+    return thisAmount;
+  }
+
+  //
   let totalAmount = 0;
   let volumeCredits = 0;
   let result = `청구내역 (고객명: ${invoice.customer})\n`;
@@ -35,7 +64,7 @@ export default function statement(invoice: Invoice, plays: Plays) {
   }).format;
 
   for (let perf of invoice.performances) {
-    let thisAmount = amountFor(perf, playFor(perf));
+    let thisAmount = amountFor(perf);
 
     // 포인트를 적립한다.
     volumeCredits += Math.max(perf.audience - 30, 0);
