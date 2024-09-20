@@ -25,23 +25,23 @@ export default function statement(invoice: Invoice, plays: Plays) {
 
   // get the cost of the play
   function amountFor(aPerformance: Performance) {
-    let thisAmount = 0;
+    let result = 0;
 
     switch (playFor(aPerformance).type) {
       case 'tragedy': // 비극
-        thisAmount = 40000;
+        result = 40000;
 
         if (aPerformance.audience > 30) {
-          thisAmount += 1000 * (aPerformance.audience - 30);
+          result += 1000 * (aPerformance.audience - 30);
         }
         break;
       case 'comedy': // 희극
-        thisAmount = 30000;
+        result = 30000;
 
         if (aPerformance.audience > 20) {
-          thisAmount += 10000 + 500 * (aPerformance.audience - 20);
+          result += 10000 + 500 * (aPerformance.audience - 20);
         }
-        thisAmount += 300 * aPerformance.audience;
+        result += 300 * aPerformance.audience;
 
         break;
 
@@ -49,7 +49,7 @@ export default function statement(invoice: Invoice, plays: Plays) {
         throw new Error(`알 수 없는 장르 : ${playFor(aPerformance).type}`);
     }
 
-    return thisAmount;
+    return result;
   }
 
   // local variables
