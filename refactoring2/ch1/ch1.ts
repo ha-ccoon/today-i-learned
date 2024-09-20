@@ -52,9 +52,10 @@ export default function statement(invoice: Invoice, plays: Plays) {
     return thisAmount;
   }
 
-  //
+  // local variables
   let totalAmount = 0;
   let volumeCredits = 0;
+
   let result = `청구내역 (고객명: ${invoice.customer})\n`;
 
   const format = new Intl.NumberFormat('en-US', {
@@ -63,21 +64,25 @@ export default function statement(invoice: Invoice, plays: Plays) {
     minimumFractionDigits: 2,
   }).format;
 
-  for (let perf of invoice.performances) {
-    let thisAmount = amountFor(perf);
+  function volumeCreditsFor(perf: Performance) {
+    let result = 0;
 
-    // 포인트를 적립한다.
-    volumeCredits += Math.max(perf.audience - 30, 0);
+    result += Math.max(perf.audience - 30, 0);
 
-    // 희극 관객 5명마다 추가 포인트를 제공한다.
     if ('comedy' === playFor(perf).type) {
-      volumeCredits += Math.floor(perf.audience / 5);
+      result += Math.floor(perf.audience / 5);
     }
 
-    result += `${playFor(perf).name} : ${format(thisAmount / 100)} (${
+    return result;
+  }
+
+  for (let perf of invoice.performances) {
+    volumeCredits += volumeCreditsFor(perf);
+
+    result += `${playFor(perf).name} : ${format(amountFor(perf) / 100)} (${
       perf.audience
     }석)\n`;
-    totalAmount += thisAmount;
+    totalAmount += amountFor(perf);
   }
 
   result += `총액: ${format(totalAmount / 100)}\n`;
