@@ -18,6 +18,20 @@ export interface PlayInfo {
 interface Plays extends Record<string, PlayInfo> {}
 
 export default function statement(invoice: Invoice, plays: Plays) {
+  let result = `청구내역 (고객명: ${invoice.customer})\n`;
+
+  for (let perf of invoice.performances) {
+    // 청구 내역 출력
+    result += `${playFor(perf).name} : ${usd(amountFor(perf))} (${
+      perf.audience
+    }석)\n`;
+  }
+
+  result += `총액: ${usd(totalAmount())}\n`;
+  result += `적립 포인트: ${totalValumnCredits()}점\n`;
+
+  return result;
+
   // get play name
   function playFor(aPerformance: Performance) {
     return plays[aPerformance.playID];
@@ -81,22 +95,14 @@ export default function statement(invoice: Invoice, plays: Plays) {
     }).format(aNumber / 100);
   }
 
-  // local variables
-  let totalAmount = 0;
+  function totalAmount() {
+    // local variables
+    let result = 0;
 
-  let result = `청구내역 (고객명: ${invoice.customer})\n`;
+    for (let perf of invoice.performances) {
+      result += amountFor(perf);
+    }
 
-  for (let perf of invoice.performances) {
-    // 청구 내역 출력
-    result += `${playFor(perf).name} : ${usd(amountFor(perf))} (${
-      perf.audience
-    }석)\n`;
-
-    totalAmount += amountFor(perf);
+    return result;
   }
-
-  result += `총액: ${usd(totalAmount)}\n`;
-  result += `적립 포인트: ${totalValumnCredits()}점\n`;
-
-  return result;
 }
