@@ -64,6 +64,15 @@ export default function statement(invoice: Invoice, plays: Plays) {
     return result;
   }
 
+  function totalValumnCredits() {
+    let volumeCredits = 0;
+    for (let perf of invoice.performances) {
+      volumeCredits += volumeCreditsFor(perf);
+    }
+
+    return volumeCredits;
+  }
+
   function usd(aNumber: number) {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -86,14 +95,8 @@ export default function statement(invoice: Invoice, plays: Plays) {
     totalAmount += amountFor(perf);
   }
 
-  // slide statements
-  let volumeCredits = 0;
-  for (let perf of invoice.performances) {
-    volumeCredits += volumeCreditsFor(perf);
-  }
-
   result += `총액: ${usd(totalAmount)}\n`;
-  result += `적립 포인트: ${volumeCredits}점\n`;
+  result += `적립 포인트: ${totalValumnCredits()}점\n`;
 
   return result;
 }
