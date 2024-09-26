@@ -18,6 +18,10 @@ export interface PlayInfo {
 interface Plays extends Record<string, PlayInfo> {}
 
 export default function statement(invoice: Invoice, plays: Plays) {
+  return renderPlainText(invoice, plays);
+}
+
+function renderPlainText(invoice: Invoice, plays: Plays) {
   let result = `청구내역 (고객명: ${invoice.customer})\n`;
 
   for (let perf of invoice.performances) {
