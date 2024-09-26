@@ -18,12 +18,18 @@ export interface PlayInfo {
 interface Plays extends Record<string, PlayInfo> {}
 
 export default function statement(invoice: Invoice, plays: Plays) {
-  const statementData = {} as Invoice; // 왜 굳이?
+  const statementData = {} as Invoice;
 
   statementData.customer = invoice.customer;
-  statementData.performances = invoice.performances;
+  statementData.performances = invoice.performances.map(enrichPerformance);
 
   return renderPlainText(statementData, plays);
+}
+
+// 기존의 객체를 수정하지 않고 복사하는 방법으로 데이터 처리 (데이터 불변 처리)
+function enrichPerformance(aPerformance: Performance) {
+  const result = Object.assign({}, aPerformance);
+  return result;
 }
 
 function renderPlainText(data: Invoice, plays: Plays) {
