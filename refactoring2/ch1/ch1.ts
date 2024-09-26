@@ -18,13 +18,18 @@ export interface PlayInfo {
 interface Plays extends Record<string, PlayInfo> {}
 
 export default function statement(invoice: Invoice, plays: Plays) {
-  return renderPlainText(invoice, plays);
+  const statementData = {} as Invoice; // 왜 굳이?
+
+  statementData.customer = invoice.customer;
+  statementData.performances = invoice.performances;
+
+  return renderPlainText(statementData, plays);
 }
 
-function renderPlainText(invoice: Invoice, plays: Plays) {
-  let result = `청구내역 (고객명: ${invoice.customer})\n`;
+function renderPlainText(data: Invoice, plays: Plays) {
+  let result = `청구내역 (고객명: ${data.customer})\n`;
 
-  for (let perf of invoice.performances) {
+  for (let perf of data.performances) {
     // 청구 내역 출력
     result += `${playFor(perf).name} : ${usd(amountFor(perf))} (${
       perf.audience
@@ -84,7 +89,7 @@ function renderPlainText(invoice: Invoice, plays: Plays) {
 
   function totalValumnCredits() {
     let volumeCredits = 0;
-    for (let perf of invoice.performances) {
+    for (let perf of data.performances) {
       volumeCredits += volumeCreditsFor(perf);
     }
 
@@ -103,7 +108,7 @@ function renderPlainText(invoice: Invoice, plays: Plays) {
     // local variables
     let result = 0;
 
-    for (let perf of invoice.performances) {
+    for (let perf of data.performances) {
       result += amountFor(perf);
     }
 
