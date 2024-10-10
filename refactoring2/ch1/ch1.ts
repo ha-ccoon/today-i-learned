@@ -1,21 +1,4 @@
-export interface Invoice {
-  customer: string;
-  performances: Performance[];
-}
-
-export interface Performance {
-  playID: string;
-  audience: number;
-}
-
-type Type = 'tragedy' | 'comedy';
-
-export interface PlayInfo {
-  name: string;
-  type: Type;
-}
-
-interface Plays extends Record<string, PlayInfo> {}
+import { Invoice, Plays, Performance } from './types';
 
 export default function statement(invoice: Invoice, plays: Plays) {
   const statementData = {} as Invoice;
@@ -43,7 +26,7 @@ function renderPlainText(data: Invoice, plays: Plays) {
   }
 
   result += `총액: ${usd(totalAmount())}\n`;
-  result += `적립 포인트: ${totalValumnCredits()}점\n`;
+  result += `적립 포인트: ${totalVolumnCredits()}점\n`;
 
   return result;
 
@@ -93,7 +76,7 @@ function renderPlainText(data: Invoice, plays: Plays) {
     return result;
   }
 
-  function totalValumnCredits() {
+  function totalVolumnCredits() {
     let volumeCredits = 0;
     for (let perf of data.performances) {
       volumeCredits += volumeCreditsFor(perf);
