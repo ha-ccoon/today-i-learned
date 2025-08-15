@@ -1,4 +1,8 @@
-# computer-science
+# Today-I-Learned
+
+
+
+## Computer Science Curriculums
 
 This repository is dedicated to the exploration of Computer Science through the following curriculums:
 
@@ -6,26 +10,16 @@ This repository is dedicated to the exploration of Computer Science through the 
 
 [Co-op in Software Engineering by McGil university](https://www.mcgill.ca/study/2023-2024/faculties/engineering/undergraduate/programs/bachelor-engineering-beng-co-op-software-engineering)
 
-Different branches of computer science education are listed below.
+### 📚 [Think Python 2](./thinkpython2/thinkpython2.pdf)
 
-# computer-science
+Python 프로그래밍 언어 학습 폴더
 
-This repository is dedicated to the exploration of Computer Science through the following curriculums:
-
-[Major Computer Science by McGil university](https://www.mcgill.ca/study/2023-2024/faculties/science/undergraduate/programs/bachelor-science-bsc-major-computer-science)
-
-[Co-op in Software Engineering by McGil university](https://www.mcgill.ca/study/2023-2024/faculties/engineering/undergraduate/programs/bachelor-engineering-beng-co-op-software-engineering)
-
-Different branches of computer science education are listed below.
+---
 
 ## 📚 [Transformer](./transformer/README.md)
 
-`transformer` 폴더는 DeepLearning.AI의 "How Transformer LLMs Work" 강의를 기반으로 한 Transformer 아키텍처 학습 내용
+DeepLearning.AI의 [How Transformer LLMs Work](https://learn.deeplearning.ai/accomplishments/51ed3c1d-5ff7-400b-8ceb-64e3bd3d8c2e?usp=sharing) 강의를 기반으로 한 Transformer 아키텍처 학습 폴더
 
-### 학습 내용
+## 📚 [Interview](./interview/README.md)
 
-- **Bag of Words**: 기본적인 텍스트 벡터화 방법
-- **Word2Vec**: 단어 임베딩과 신경망 기반 표현 학습
-- **Attention 메커니즘**: 문맥을 고려한 인코딩/디코딩
-- **Transformer 아키텍처**: Self-Attention 기반의 혁신적 모델 구조
-- **최신 개선사항**: RoPE, Grouped-query attention 등 현대적 기법
+면접 준비 폴더
